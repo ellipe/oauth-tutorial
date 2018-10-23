@@ -27,14 +27,12 @@ passport.use(
                 return done(err)
             }
             if (user) {
-                console.log("User is ", user)
                 done(null, user)
             } else {
                 new User({
                     googleId: profile.id,
                     username: profile.displayName
                 }).save().then((newUser)=> {
-                    console.log("new user created ", newUser)
                     done(null, newUser)
                 }).catch((err) => {
                     console.log("Cannot create the new user.")
